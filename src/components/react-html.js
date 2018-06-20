@@ -1,11 +1,10 @@
-import React,{PureComponent,createElement} from 'react';
+import React, { Component ,createElement } from 'react';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import noop from 'noop';
 import objectAssign from 'object-assign';
 
-export default class extends PureComponent{
+export default class extends Component{
   /*===properties start===*/
   static propTypes = {
     nodeName:PropTypes.string,
@@ -17,14 +16,8 @@ export default class extends PureComponent{
   };
   /*===properties end===*/
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render(){
-    const { className,nodeName,children,...props } = this.props;
-    console.log(children);
+    const { className, nodeName, children, ...props } = this.props;
     return createElement(nodeName,objectAssign({
       dangerouslySetInnerHTML:{__html: children },
       className:classNames('react-html',className),
