@@ -1,2 +1,2 @@
-import ReactHtml from 'components/react-html';
+import ReactHtml from './components';
 export default ReactHtml;
