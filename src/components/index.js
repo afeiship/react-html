@@ -1,32 +1,35 @@
-import React, { Component, createElement } from 'react';
-
-import PropTypes from 'prop-types';
+import noop from '@jswork/noop';
 import classNames from 'classnames';
-import objectAssign from 'object-assign';
+import PropTypes from 'prop-types';
+import React, { createElement, Component } from 'react';
 
-export default class extends Component {
-  /*===properties start===*/
+const CLASS_NAME = 'react-html';
+
+export default class ReactHtml extends Component {
+  static displayName = CLASS_NAME;
+  static version = '__VERSION__';
   static propTypes = {
-    nodeName: PropTypes.string,
-    className: PropTypes.string
+    /**
+     * The extended className for component.
+     */
+    className: PropTypes.string,
+    /**
+     * The node name(default is `div`).
+     */
+    nodeName: PropTypes.string
   };
 
   static defaultProps = {
     nodeName: 'div'
   };
-  /*===properties end===*/
 
   render() {
     const { className, nodeName, children, ...props } = this.props;
-    return createElement(
-      nodeName,
-      objectAssign(
-        {
-          dangerouslySetInnerHTML: { __html: children },
-          className: classNames('react-html', className)
-        },
-        props
-      )
-    );
+    return createElement(nodeName, {
+      'data-component': CLASS_NAME,
+      'dangerouslySetInnerHTML': { __html: children },
+      'className': classNames(CLASS_NAME, className),
+      ...props
+    });
   }
 }

@@ -1,30 +1,27 @@
-import ReactHtml from '../src/main';
-import ReactDOM from 'react-dom';
+import ReactDemokit from '@jswork/react-demokit';
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactHtml from '../src/main';
 import './assets/style.scss';
 
 class App extends React.Component {
   state = {
-    html1: '<strong>strong text</strong>',
+    html1: '<p><strong>strong text</strong></p>',
     html2: '<strong>strong text</strong><span>inline text</span>',
     html3: '<strong>strong text</strong><em>inline em text</em>'
   };
 
-  constructor(props) {
-    super(props);
-    window.demo = this;
-    window.refs = this.refs;
-    window.rc = this.refs.rc;
-  }
-
   render() {
     return (
-      <div className="hello-react-html">
+      <ReactDemokit
+        className="p-3 app-container"
+        url="https://github.com/afeiship/react-html">
         <ReactHtml>{this.state.html1}</ReactHtml>
-        <ReactHtml nodeName="span">{this.state.html2}</ReactHtml>
-        <ReactHtml nodeName="span">{this.state.html3}</ReactHtml>
-      </div>
+        <ReactHtml nodeName="blockquote">{this.state.html2}</ReactHtml>
+        <ReactHtml nodeName="p">{this.state.html3}</ReactHtml>
+      </ReactDemokit>
     );
   }
 }
+
 ReactDOM.render(<App />, document.getElementById('app'));
